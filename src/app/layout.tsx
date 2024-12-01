@@ -7,8 +7,6 @@ export const metadata: Metadata = {
   description: "Maksymilian Gembarzewski - Portfolio",
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{

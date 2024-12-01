@@ -2,15 +2,14 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion as m } from 'framer-motion';
-import { list } from "postcss";
-
+import PageLoadAnimation from '../PageLoadAnimation'
 
 export default function Navbar() {
     
     const btnVariants = {
         hover:{
             scale:1.1,
-            boxShadow: "0px 0px 5px #000",    
+            boxShadow: "3px 5px 8px rgba(0,0,0,0.38)",    
         }
     }
 
@@ -30,7 +29,7 @@ export default function Navbar() {
         },
         btnHover:{
             scale:1.1,
-            boxShadow: "0px 0px 5px #000",    
+            boxShadow: "4px 4px 4px rgba(0,0,0,0.38)",    
         },
         rotate:{
             rotate: 180
@@ -46,9 +45,11 @@ export default function Navbar() {
       setIsHovered(false);
     }
 
+
   return (
-    <div 
-    className={"bg-gray-400 py-2 fixed w-full z-20 text-black h-16"}
+    <m.div 
+    className={" py-2 fixed w-full z-20 text-white h-16"}
+    {...PageLoadAnimation}
     >
       <ul 
       className="flex space-x-3 w-fit align-middle h-full mx-auto"
@@ -56,11 +57,11 @@ export default function Navbar() {
         <m.li 
         variants={btnVariants}
         whileHover="hover"
-        className="h-full cursor-pointer flex items-center border-black border-2 rounded"
+        className="h-full cursor-pointer flex items-center border-white border-2 rounded"
         >
           <Link 
           className="my-auto flex px-7"
-          href={''}
+          href={{pathname:'/Contact'}}
           >
             Kontakt
           </Link>
@@ -68,11 +69,11 @@ export default function Navbar() {
         <m.li 
         variants={btnVariants}
         whileHover="hover"
-        className="h-full cursor-pointer flex items-center border-black border-2 rounded"
+        className="h-full cursor-pointer flex items-center border-white border-2 rounded"
         >
           <Link 
           className="my-auto flex px-7"
-          href={''}
+          href={'/'}
           >
             Home
           </Link>
@@ -83,18 +84,22 @@ export default function Navbar() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         whileHover="hover"
-        className="h-full flex cursor-default items-center border-black border-2 rounded px-7"
+        className="h-full flex cursor-default items-center border-white border-2 rounded "
         >
             <m.div
-            className=""
+            className="h-40 w-44 flex items-center"
             >
-            Wykształcenie
+              <span
+              className="align-middle mx-auto"
+              >
+                Wykształcenie
+              </span>
 
             <m.svg
             variants={listVariants}
             animate={isHovered ? "rotate" : ""}
             whileHover="rotate"
-            className="float-right ml-2 "
+            className="float-right mr-auto "
             xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 15 15">
             <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
             </m.svg>
@@ -102,10 +107,9 @@ export default function Navbar() {
               <m.ul 
               variants={listVariants}
               animate={isHovered ? "hover" : "hidden"}
-              
-              className="bg-slate-400 absolute rounded-lg border-2 border-black z-10 w-44 px-7">
+              className=" absolute top-14 rounded-lg  w-44 px-7 ">
                 <m.li
-                className="my-3 border text-center px-1 border-black rounded"
+                className="my-3 border text-center px-1 border-white rounded"
                 variants={listVariants}
                 animate={isHovered ? "hover" : "hidden"}
                 whileHover="btnHover"
@@ -113,7 +117,7 @@ export default function Navbar() {
                   Szkoła śrenia
                 </m.li>
                 <m.li
-                className="my-3 border text-center px-1 border-black rounded"
+                className="my-3 border text-center px-1 border-white rounded"
                 variants={listVariants}
                 animate={isHovered ? "hover" : "hidden"}
                 whileHover="btnHover"
@@ -121,7 +125,7 @@ export default function Navbar() {
                   Studia 
                 </m.li>
                 <m.li
-                className="my-3 border text-center px-1 border-black rounded"
+                className="my-3 border text-center px-1 border-white rounded"
                 variants={listVariants}
                 animate={isHovered ? "hover" : "hidden"}
                 whileHover="btnHover"
@@ -133,6 +137,6 @@ export default function Navbar() {
             </m.div>
         </m.li>
       </ul>
-    </div>
+    </m.div>
   );
 }
