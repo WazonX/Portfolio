@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import bg from "./Images/pexels-joyston-judah-331625-933054.jpg"
-import { motion as m, MotionValue, useTransform ,useScroll, useSpring } from 'framer-motion'
+import { motion as m, MotionValue, useTransform ,useScroll, useSpring } from 'motion/react'
 import { useRef } from "react";
 import AnimationSettings from './Common/PageLoadAnimation'
 
@@ -13,7 +13,6 @@ export default function Home() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const y = useParallax(scrollYProgress,280);
-  console.log(AnimationSettings)
   return (
     <m.div
     >
@@ -31,17 +30,20 @@ export default function Home() {
       >
       </m.img>
       <m.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}      
-        transition= {{ duration: 1}}
-        variants={{
-          hidden: { opacity: 0, y:20},
-          visible: {opacity: 1, y:0}
-        }}
-      
-      className="bg-white absolute top-full w-full h-svh">
-
+      className="bg-white absolute top-full w-full h-svh pt-20">
+        <m.div
+        className="h-fit w-fit flex justify-center"
+        >
+          <m.img
+          className="bg-black w-1/4 rounded-lg aspect-square mx-6"
+          src={bg.src}
+          />
+          <m.div
+          className="flex text-black w-1/2 my-auto text-lg"
+          >
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit libero esse repellat nemo blanditiis? Placeat nihil ducimus quidem fuga odio debitis qui optio deserunt, maiores rerum neque, harum libero eum dignissimos nulla culpa amet aut a corrupti! Officiis, illum minus aliquam accusamus molestiae quis quae facere repellendus velit veniam aperiam?
+          </m.div>
+        </m.div>
       </m.div>
     </m.div>
   );

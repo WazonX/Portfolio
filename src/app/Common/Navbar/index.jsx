@@ -1,11 +1,18 @@
 'use client'
 import Link from "next/link";
 import { useState } from "react";
-import { motion as m } from 'framer-motion';
+import { motion as m, useScroll, useTransform} from 'motion/react';
 import PageLoadAnimation from '../PageLoadAnimation'
 
 export default function Navbar() {
     
+  const { scrollY } = useScroll();
+  const background = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(0, 183, 255, 0)", "rgba(0, 183, 255, 1)"]
+  );
+
     const btnVariants = {
         hover:{
             scale:1.1,
@@ -50,6 +57,9 @@ export default function Navbar() {
     <m.div 
     className={" py-2 fixed w-full z-20 text-white h-16"}
     {...PageLoadAnimation}
+    style={{
+      background
+    }}
     >
       <ul 
       className="flex space-x-3 w-fit align-middle h-full mx-auto"
@@ -57,7 +67,7 @@ export default function Navbar() {
         <m.li 
         variants={btnVariants}
         whileHover="hover"
-        className="h-full cursor-pointer flex items-center border-white border-2 rounded"
+        className="h-full cursor-pointer flex items-center border-white border rounded"
         >
           <Link 
           className="my-auto flex px-7"
@@ -69,7 +79,7 @@ export default function Navbar() {
         <m.li 
         variants={btnVariants}
         whileHover="hover"
-        className="h-full cursor-pointer flex items-center border-white border-2 rounded"
+        className="h-full cursor-pointer flex items-center border-white border rounded"
         >
           <Link 
           className="my-auto flex px-7"
@@ -84,7 +94,7 @@ export default function Navbar() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         whileHover="hover"
-        className="h-full flex cursor-default items-center border-white border-2 rounded "
+        className="h-full flex cursor-default items-center border-white border rounded "
         >
             <m.div
             className="h-40 w-44 flex items-center"
@@ -101,7 +111,7 @@ export default function Navbar() {
             whileHover="rotate"
             className="float-right mr-auto "
             xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 15 15">
-            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+            <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
             </m.svg>
 
               <m.ul 
